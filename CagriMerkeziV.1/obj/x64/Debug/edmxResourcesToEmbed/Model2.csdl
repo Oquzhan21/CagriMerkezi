@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CagriMerkezModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Calisan">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Soyad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DogumTar" Type="DateTime" Precision="3" />
+    <Property Name="Numara" Type="Int64" />
+    <Property Name="Tc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Giris">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sifre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciId" Type="Int32" />
+    <Property Name="Yetki" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Gorev">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GorevAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GorevDetay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GorevSahibiID" Type="Int32" />
+    <Property Name="YapilacakSTarih" Type="DateTime" Precision="3" />
+    <Property Name="YapilmaDurumu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GorusmeKaydi">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ArananKisi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ArananNo" Type="Int64" />
+    <Property Name="GorusmeNotu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GorusmeTar" Type="DateTime" Precision="3" />
+    <Property Name="ErtelemeTar" Type="DateTime" Precision="3" />
+    <Property Name="GorusmeDurumu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Musteri">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MusteriAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MusteriSoyadi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MusteriNumarasi" Type="Int64" />
+    <Property Name="MusteriProblemi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GorusmeId" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="CagriMerkezEntities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Calisan" EntityType="Self.Calisan" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Giris" EntityType="Self.Giris" />
+    <EntitySet Name="Gorev" EntityType="Self.Gorev" />
+    <EntitySet Name="GorusmeKaydi" EntityType="Self.GorusmeKaydi" />
+    <EntitySet Name="Musteri" EntityType="Self.Musteri" />
+  </EntityContainer>
+</Schema>

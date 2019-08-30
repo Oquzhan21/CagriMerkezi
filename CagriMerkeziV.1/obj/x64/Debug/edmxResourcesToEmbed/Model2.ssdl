@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CagriMerkezModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Calisan">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="nvarchar(max)" />
+    <Property Name="Soyad" Type="nvarchar(max)" />
+    <Property Name="mail" Type="nvarchar(max)" />
+    <Property Name="DogumTar" Type="datetime" />
+    <Property Name="Numara" Type="bigint" />
+    <Property Name="Tc" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CagriMerkez.dbo.Giris' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Giris">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="nvarchar(max)" />
+    <Property Name="Sifre" Type="nvarchar(max)" />
+    <Property Name="KullaniciId" Type="int" />
+    <Property Name="Yetki" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CagriMerkez.dbo.Gorev' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Gorev">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GorevAdi" Type="nvarchar(max)" />
+    <Property Name="GorevDetay" Type="nvarchar(max)" />
+    <Property Name="GorevSahibiID" Type="int" />
+    <Property Name="YapilacakSTarih" Type="datetime" />
+    <Property Name="YapilmaDurumu" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CagriMerkez.dbo.GorusmeKaydi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="GorusmeKaydi">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ArananKisi" Type="nvarchar(max)" />
+    <Property Name="ArananNo" Type="bigint" />
+    <Property Name="GorusmeNotu" Type="nvarchar(max)" />
+    <Property Name="GorusmeTar" Type="datetime" />
+    <Property Name="ErtelemeTar" Type="datetime" />
+    <Property Name="GorusmeDurumu" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CagriMerkez.dbo.Musteri' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Musteri">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MusteriAdi" Type="nvarchar(max)" />
+    <Property Name="MusteriSoyadi" Type="nvarchar(max)" />
+    <Property Name="MusteriNumarasi" Type="bigint" />
+    <Property Name="MusteriProblemi" Type="nvarchar(max)" />
+    <Property Name="GorusmeId" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityContainer Name="CagriMerkezModelStoreContainer">
+    <EntitySet Name="Calisan" EntityType="Self.Calisan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Giris" EntityType="Self.Giris" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Giris].[ID] AS [ID], 
+    [Giris].[KullaniciAdi] AS [KullaniciAdi], 
+    [Giris].[Sifre] AS [Sifre], 
+    [Giris].[KullaniciId] AS [KullaniciId], 
+    [Giris].[Yetki] AS [Yetki]
+    FROM [dbo].[Giris] AS [Giris]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Gorev" EntityType="Self.Gorev" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Gorev].[ID] AS [ID], 
+    [Gorev].[GorevAdi] AS [GorevAdi], 
+    [Gorev].[GorevDetay] AS [GorevDetay], 
+    [Gorev].[GorevSahibiID] AS [GorevSahibiID], 
+    [Gorev].[YapilacakSTarih] AS [YapilacakSTarih], 
+    [Gorev].[YapilmaDurumu] AS [YapilmaDurumu]
+    FROM [dbo].[Gorev] AS [Gorev]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="GorusmeKaydi" EntityType="Self.GorusmeKaydi" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [GorusmeKaydi].[ID] AS [ID], 
+    [GorusmeKaydi].[ArananKisi] AS [ArananKisi], 
+    [GorusmeKaydi].[ArananNo] AS [ArananNo], 
+    [GorusmeKaydi].[GorusmeNotu] AS [GorusmeNotu], 
+    [GorusmeKaydi].[GorusmeTar] AS [GorusmeTar], 
+    [GorusmeKaydi].[ErtelemeTar] AS [ErtelemeTar], 
+    [GorusmeKaydi].[GorusmeDurumu] AS [GorusmeDurumu]
+    FROM [dbo].[GorusmeKaydi] AS [GorusmeKaydi]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Musteri" EntityType="Self.Musteri" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Musteri].[ID] AS [ID], 
+    [Musteri].[MusteriAdi] AS [MusteriAdi], 
+    [Musteri].[MusteriSoyadi] AS [MusteriSoyadi], 
+    [Musteri].[MusteriNumarasi] AS [MusteriNumarasi], 
+    [Musteri].[MusteriProblemi] AS [MusteriProblemi], 
+    [Musteri].[GorusmeId] AS [GorusmeId]
+    FROM [dbo].[Musteri] AS [Musteri]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

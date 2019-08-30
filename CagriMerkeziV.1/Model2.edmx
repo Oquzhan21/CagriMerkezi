@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CagriMerkezModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Calisan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar(max)" />
+          <Property Name="Soyad" Type="nvarchar(max)" />
+          <Property Name="mail" Type="nvarchar(max)" />
+          <Property Name="DogumTar" Type="datetime" />
+          <Property Name="Numara" Type="bigint" />
+          <Property Name="Tc" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CagriMerkez.dbo.Giris' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Giris">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciAdi" Type="nvarchar(max)" />
+          <Property Name="Sifre" Type="nvarchar(max)" />
+          <Property Name="KullaniciId" Type="int" />
+          <Property Name="Yetki" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CagriMerkez.dbo.Gorev' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Gorev">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GorevAdi" Type="nvarchar(max)" />
+          <Property Name="GorevDetay" Type="nvarchar(max)" />
+          <Property Name="GorevSahibiID" Type="int" />
+          <Property Name="YapilacakSTarih" Type="datetime" />
+          <Property Name="YapilmaDurumu" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CagriMerkez.dbo.GorusmeKaydi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GorusmeKaydi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArananKisi" Type="nvarchar(max)" />
+          <Property Name="ArananNo" Type="bigint" />
+          <Property Name="GorusmeNotu" Type="nvarchar(max)" />
+          <Property Name="GorusmeTar" Type="datetime" />
+          <Property Name="ErtelemeTar" Type="datetime" />
+          <Property Name="GorusmeDurumu" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CagriMerkez.dbo.Musteri' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MusteriAdi" Type="nvarchar(max)" />
+          <Property Name="MusteriSoyadi" Type="nvarchar(max)" />
+          <Property Name="MusteriNumarasi" Type="bigint" />
+          <Property Name="MusteriProblemi" Type="nvarchar(max)" />
+          <Property Name="GorusmeId" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityContainer Name="CagriMerkezModelStoreContainer">
+          <EntitySet Name="Calisan" EntityType="Self.Calisan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Giris" EntityType="Self.Giris" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Giris].[ID] AS [ID], 
+    [Giris].[KullaniciAdi] AS [KullaniciAdi], 
+    [Giris].[Sifre] AS [Sifre], 
+    [Giris].[KullaniciId] AS [KullaniciId], 
+    [Giris].[Yetki] AS [Yetki]
+    FROM [dbo].[Giris] AS [Giris]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Gorev" EntityType="Self.Gorev" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Gorev].[ID] AS [ID], 
+    [Gorev].[GorevAdi] AS [GorevAdi], 
+    [Gorev].[GorevDetay] AS [GorevDetay], 
+    [Gorev].[GorevSahibiID] AS [GorevSahibiID], 
+    [Gorev].[YapilacakSTarih] AS [YapilacakSTarih], 
+    [Gorev].[YapilmaDurumu] AS [YapilmaDurumu]
+    FROM [dbo].[Gorev] AS [Gorev]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="GorusmeKaydi" EntityType="Self.GorusmeKaydi" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GorusmeKaydi].[ID] AS [ID], 
+    [GorusmeKaydi].[ArananKisi] AS [ArananKisi], 
+    [GorusmeKaydi].[ArananNo] AS [ArananNo], 
+    [GorusmeKaydi].[GorusmeNotu] AS [GorusmeNotu], 
+    [GorusmeKaydi].[GorusmeTar] AS [GorusmeTar], 
+    [GorusmeKaydi].[ErtelemeTar] AS [ErtelemeTar], 
+    [GorusmeKaydi].[GorusmeDurumu] AS [GorusmeDurumu]
+    FROM [dbo].[GorusmeKaydi] AS [GorusmeKaydi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Musteri].[ID] AS [ID], 
+    [Musteri].[MusteriAdi] AS [MusteriAdi], 
+    [Musteri].[MusteriSoyadi] AS [MusteriSoyadi], 
+    [Musteri].[MusteriNumarasi] AS [MusteriNumarasi], 
+    [Musteri].[MusteriProblemi] AS [MusteriProblemi], 
+    [Musteri].[GorusmeId] AS [GorusmeId]
+    FROM [dbo].[Musteri] AS [Musteri]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CagriMerkezModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Calisan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Soyad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DogumTar" Type="DateTime" Precision="3" />
+          <Property Name="Numara" Type="Int64" />
+          <Property Name="Tc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Giris">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sifre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciId" Type="Int32" />
+          <Property Name="Yetki" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Gorev">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GorevAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GorevDetay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GorevSahibiID" Type="Int32" />
+          <Property Name="YapilacakSTarih" Type="DateTime" Precision="3" />
+          <Property Name="YapilmaDurumu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GorusmeKaydi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArananKisi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ArananNo" Type="Int64" />
+          <Property Name="GorusmeNotu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GorusmeTar" Type="DateTime" Precision="3" />
+          <Property Name="ErtelemeTar" Type="DateTime" Precision="3" />
+          <Property Name="GorusmeDurumu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MusteriAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriSoyadi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriNumarasi" Type="Int64" />
+          <Property Name="MusteriProblemi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GorusmeId" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="CagriMerkezEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Calisan" EntityType="Self.Calisan" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Giris" EntityType="Self.Giris" />
+          <EntitySet Name="Gorev" EntityType="Self.Gorev" />
+          <EntitySet Name="GorusmeKaydi" EntityType="Self.GorusmeKaydi" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CagriMerkezModelStoreContainer" CdmEntityContainer="CagriMerkezEntities4">
+          <EntitySetMapping Name="Calisan">
+            <EntityTypeMapping TypeName="CagriMerkezModel.Calisan">
+              <MappingFragment StoreEntitySet="Calisan">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="DogumTar" ColumnName="DogumTar" />
+                <ScalarProperty Name="Numara" ColumnName="Numara" />
+                <ScalarProperty Name="Tc" ColumnName="Tc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CagriMerkezModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Giris">
+            <EntityTypeMapping TypeName="CagriMerkezModel.Giris">
+              <MappingFragment StoreEntitySet="Giris">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+                <ScalarProperty Name="Yetki" ColumnName="Yetki" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gorev">
+            <EntityTypeMapping TypeName="CagriMerkezModel.Gorev">
+              <MappingFragment StoreEntitySet="Gorev">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GorevAdi" ColumnName="GorevAdi" />
+                <ScalarProperty Name="GorevDetay" ColumnName="GorevDetay" />
+                <ScalarProperty Name="GorevSahibiID" ColumnName="GorevSahibiID" />
+                <ScalarProperty Name="YapilacakSTarih" ColumnName="YapilacakSTarih" />
+                <ScalarProperty Name="YapilmaDurumu" ColumnName="YapilmaDurumu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GorusmeKaydi">
+            <EntityTypeMapping TypeName="CagriMerkezModel.GorusmeKaydi">
+              <MappingFragment StoreEntitySet="GorusmeKaydi">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ArananKisi" ColumnName="ArananKisi" />
+                <ScalarProperty Name="ArananNo" ColumnName="ArananNo" />
+                <ScalarProperty Name="GorusmeNotu" ColumnName="GorusmeNotu" />
+                <ScalarProperty Name="GorusmeTar" ColumnName="GorusmeTar" />
+                <ScalarProperty Name="ErtelemeTar" ColumnName="ErtelemeTar" />
+                <ScalarProperty Name="GorusmeDurumu" ColumnName="GorusmeDurumu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Musteri">
+            <EntityTypeMapping TypeName="CagriMerkezModel.Musteri">
+              <MappingFragment StoreEntitySet="Musteri">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MusteriAdi" ColumnName="MusteriAdi" />
+                <ScalarProperty Name="MusteriSoyadi" ColumnName="MusteriSoyadi" />
+                <ScalarProperty Name="MusteriNumarasi" ColumnName="MusteriNumarasi" />
+                <ScalarProperty Name="MusteriProblemi" ColumnName="MusteriProblemi" />
+                <ScalarProperty Name="GorusmeId" ColumnName="GorusmeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
